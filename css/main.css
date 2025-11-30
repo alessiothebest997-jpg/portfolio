@@ -335,7 +335,9 @@ hr {
 
 body {
     position: relative;
-    overflow: hidden;
+        overflow-x: hidden;   /* blocca solo l’orizzontale */
+    overflow-y: auto;     /* permette lo scroll verticale */
+
 }
 
 
@@ -504,7 +506,10 @@ body {
     flex-direction: column;
     gap: 2rem;
     margin-top: 1.5rem;
+	overflow-y: auto;
 }
+
+
 
 /* Titoli delle categorie */
 .skills h3 {
@@ -1167,6 +1172,7 @@ body.is-article-visible #header {
     border: 1.5px solid rgba(255, 255, 255, 0.6);  /* bordo bianco fine */
     border-radius: 10px;                           /* leggero arrotondamento */
     box-shadow: none !important;                   /* rimuove ombre originali */
+	
                        }
 
 					   /* Titolo della sezione */
@@ -1255,7 +1261,7 @@ body.is-article-visible #header {
 		transition: transform 0.325s ease-in-out, filter 0.325s ease-in-out, opacity 0.325s ease-in-out;
 		width: 100%;
 		max-width: 100%;
-		margin-top: 2rem;
+		
 		text-align: center;
 	}
 
