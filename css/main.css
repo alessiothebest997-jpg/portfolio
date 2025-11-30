@@ -318,7 +318,6 @@ hr {
 		border-radius: 4px;
 		border: solid 1px #ffffff;
 		margin-bottom: 2rem;
-		padding: 1.5em;
 	}
 
         .box > :last-child,
@@ -333,6 +332,98 @@ hr {
 			padding: 0;
 		}
 
+
+body {
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* ================================
+          TABLET (iPad)
+=================================== */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    body::after {
+        top: -12%;
+        right: 50%;
+        transform: translateX(50%);
+        width: 95%;
+        height: 150%;
+        background-position: center center;
+        opacity: 0.18;
+    }
+}
+
+/* ================================
+              SMARTPHONE
+=================================== */
+
+@media (max-width: 736px) {
+    body::after {
+        top: -5%;
+        right: 0%;
+        width: 90%;
+        height: 110%;
+        opacity: 0.20;
+    }
+}
+
+/* ================================
+         MOBILE PICCOLO
+=================================== */
+
+@media (max-width: 480px) {
+    body::after {
+        display: none;
+    }
+}
+
+#jolly{
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.hero-svg {
+    position: fixed;       /* fissa sullo schermo */
+    top: 0%;
+    right: -20%;
+    width: 60%;
+    height: auto;
+    opacity: 0.90;
+    pointer-events: none;   /* non intercetta click */
+    z-index: 0;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .hero-svg {
+        top: -10%;
+        right: 50%;
+        transform: translateX(50%);
+        width: 85%;
+        opacity: 0.90;
+    }
+}
+
+@media (max-width: 736px) {
+    .hero-svg {
+        top: -5%;
+        right: 0%;
+        transform: none;
+        width: 90%;
+        opacity: 0.16;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-svg {
+        display: none;
+    }
+}
+
 		/* --- VIDEO DI SFONDO --- */
 
 #bg-video {
@@ -344,6 +435,28 @@ hr {
     object-fit: cover;
     z-index: -2; /* sotto tutto */
     filter: brightness(0.90); /* scurisce per far risaltare il contenuto */
+}
+
+@media (max-width: 1024px) {
+    #bg-video {
+        object-position: center top;
+        filter: brightness(0.85);
+    }
+}
+
+@media (max-width: 736px) {
+    #bg-video {
+        height: 120vh;           /* più alto per coprire tutto */
+        object-position: center;
+    }
+}
+
+@media (max-width: 480px) {
+    #bg-video {
+        height: 130vh;
+        object-position: center;
+        filter: brightness(0.80);
+    }
 }
 
 /* Overlay nero leggero + luce centrale */
@@ -362,6 +475,27 @@ hr {
         rgba(0,0,0,0.55) 65%
     );
 }
+
+@media (max-width: 736px) {
+    #bg-overlay {
+        background: radial-gradient(
+            ellipse at center top,
+            rgba(255,255,255,0.05) 0%,
+            rgba(0,0,0,0.65) 70%
+        );
+    }
+}
+
+@media (max-width: 480px) {
+    #bg-overlay {
+        background: radial-gradient(
+            ellipse at center top,
+            rgba(255,255,255,0.03) 0%,
+            rgba(0,0,0,0.75) 80%
+        );
+    }
+}
+
 
 		
 /* Contenitore skill */
@@ -724,51 +858,60 @@ hr {
 /* Wrapper */
 
 	#wrapper {
-		display: -moz-flex;
-		display: -webkit-flex;
-		display: -ms-flex;
-		display: flex;
-		-moz-flex-direction: column;
-		-webkit-flex-direction: column;
-		-ms-flex-direction: column;
-		flex-direction: column;
-		-moz-align-items: center;
-		-webkit-align-items: center;
-		-ms-align-items: center;
-		align-items: center;
-		-moz-justify-content: space-between;
-		-webkit-justify-content: space-between;
-		-ms-justify-content: space-between;
-		justify-content: space-between;
-		position: relative;
-		min-height: 100vh;
-		width: 100%;
-		padding: 4rem 2rem;
-		z-index: 3;
-	}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+
+    max-width: 1400px;      /* Limita larghezza su schermi grandi */
+    margin: 0 auto;         /* Centra tutto */
+    padding: 4rem 2rem;
+
+    z-index: 3;
+}
+
 
         #wrapper:before {
 			content: '';
 			display: block;
 		}
 
-        @media screen and (max-width: 1680px) {
-			#wrapper {
-				padding: 3rem 2rem;
-			}
-		}
+		
+/* 1️⃣ Schermi grandi fino a 1680px */
+@media screen and (max-width: 1680px) {
+    #wrapper {
+        max-width: 1200px;
+        padding: 3rem 2rem;
+    }
+}
 
-        @media screen and (max-width: 736px) {
-			#wrapper {
-				padding: 2rem 1rem;
-			}
-		}
+/* 2️⃣ Tablet / schermi medi */
+@media screen and (max-width: 1024px) {
+    #wrapper {
+        max-width: 900px;
+        padding: 2.5rem 1.5rem;
+    }
+}
 
-        @media screen and (max-width: 480px) {
-			#wrapper {
-				padding: 1rem;
-			}
-		}
+/* 3️⃣ Smartphone grandi */
+@media screen and (max-width: 736px) {
+    #wrapper {
+        max-width: 95%;
+        padding: 2rem 1rem;
+    }
+}
+
+/* 4️⃣ Smartphone piccoli (iPhone SE ecc.) */
+@media screen and (max-width: 480px) {
+    #wrapper {
+        max-width: 100%;
+        padding: 1.2rem;
+    }
+}
 
 /* HEADER – versione compatta e moderna */
 
@@ -777,7 +920,7 @@ hr {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding-top: 20px; /* molto meno rispetto al template */
+    padding-top: 45px; /* molto meno rispetto al template */
 }
 
 /* Riduce lo spazio tra tutti gli elementi */
@@ -813,7 +956,7 @@ hr {
 #header .content {
 	margin: 0;
     border-bottom: 2px solid rgba(255,255,255,0.45);
-    padding: 1px;  /* prima 3rem */
+    padding: 1px; 
     max-width: 800px;        /* più stretto = più elegante */
 }
 
@@ -1084,7 +1227,7 @@ body.is-article-visible #header {
         @media screen and (max-width: 736px) {
 
 			#main article {
-				padding: 3.5rem 2rem 0.5rem 2rem ;
+				/*padding: 3.5rem 2rem 0.5rem 2rem ;*/
 			}
 
 				#main article .close:before {
@@ -1099,7 +1242,7 @@ body.is-article-visible #header {
         @media screen and (max-width: 480px) {
 
 			#main article {
-				padding: 3rem 1.5rem 0.5rem 1.5rem ;
+				/*padding: 3rem 1.5rem 0.5rem 1.5rem ;*/
 			}
 		}
 
