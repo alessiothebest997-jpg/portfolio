@@ -925,12 +925,31 @@ body.is-article-visible #header {
 		}
 
 		#main article {
-    background-color: rgba(0, 0, 0, 0) !important; /* sfondo trasparente */
-    border: 1.5px solid rgba(255, 255, 255, 0.6);  /* bordo bianco fine */
-    border-radius: 10px;                           /* leggero arrotondamento */
-    box-shadow: none !important;                   /* rimuove ombre originali */
-	
-                       }
+     /* mantiene il tuo setup */
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  border-radius: 10px;
+
+  /* glass */
+  background: rgba(255, 255, 255, 0.10) !important; /* non totalmente trasparente */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(12px);
+  
+
+  /* un filo di profondità, senza “ombra pesante” */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25) !important;
+
+   transition:
+    opacity 2s ease,
+    transform 2s ease,
+    backdrop-filter 2s ease;
+}
+
+/* Fallback se backdrop-filter non è supportato */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  #main article {
+    background: rgba(15, 18, 20, 0.65) !important;
+  } }
+  
 
 					   /* Titolo della sezione */
 #main article .major {
@@ -987,6 +1006,7 @@ body.is-article-visible #header {
 					background-color: rgba(255, 255, 255, 0.175);
 				}
 
+
        
 
 /* Footer */
@@ -1032,7 +1052,13 @@ body.is-article-visible #header {
     #header .content h1 { font-size: 3.2rem; }
     #header .content h2 { font-size: 1.4rem; }
 
-    .hero-svg { width: 70%; top: -5%; right: 0%; opacity: 0.15; }
+    .hero-svg {
+        width: 80%;
+        bottom: 0;
+        left: 50%;
+        opacity: 0.15;
+        transform: translateX(-50%);
+    }
 
     #bg-video { object-position: center top; filter: brightness(0.85); }
 }
@@ -1046,6 +1072,10 @@ body.is-article-visible #header {
         flex-direction: column;
         gap: 0.5rem;
         padding: 0;
+    }
+
+	#header nav ul li{
+        width: 100%;
     }
 
     #header nav ul li a {
